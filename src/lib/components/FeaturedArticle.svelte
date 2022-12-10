@@ -69,7 +69,7 @@
     {/each}
 </div>
 
-<style>
+<style lang="postcss">
     .article-preview-container {
         width: 30%;
         height: 75vh;
@@ -181,13 +181,6 @@
         width: 9.6vw;
         height: 8.7vw;
         z-index: 1000;
-    }
-
-    @keyframes fall {
-        100% {transform: rotate(10deg); top: 400%}
-    }
-    :global(.fall-class) {
-        animation: fall 2s ease-in !important;
-        pointer-events: none !important;
+        pointer-events: none;
     }
 </style>

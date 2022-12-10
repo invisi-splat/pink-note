@@ -43,7 +43,7 @@
     <div class="name" class:active>{name}</div>
 </div>
 
-<style>
+<style lang="postcss">
     .container {
         position: relative;
         height: 100%;
@@ -75,7 +75,7 @@
     .name {
         height: 30%;
         position: relative;
-        bottom: 40%;
+        bottom: 32%;
         text-align: center;
         text-transform: lowercase;
         font-family: Baskerville, 'Times New Roman', Times, serif;

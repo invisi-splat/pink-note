@@ -1,14 +1,17 @@
 <script lang="ts">
     import pinboard from "$lib/assets/paperboard-simple-fiber-dusty-texture.jpg";
-    import michael_heighway from "$lib/assets/title_imgs/0.jpg";
     import paper_texture from "$lib/assets/pink-paper-texture.jpeg";
 
     let y: number; // scrolled pixels
     let startTime: number; // for timer
     let endTime: number;
 
+
     // generate post-its
-    const n = 10; // number of pictures --- dev only, please change
+    export let n = 10;
+    export let imgURLs: any[];
+
+
     let remainingPictures = n;
     let people: {name: string, image_url: string, top: string, left: string, rotation: string}[];
     function generatePostIts() {
@@ -30,7 +33,7 @@
             rotation = Math.floor(Math.random() * 30) - 15;
             people.push({
                 name: "placeholder",
-                image_url: michael_heighway,
+                image_url: imgURLs[i].default,
                 top: String(top) + "%",
                 left: String(left) + "%",
                 rotation: String(rotation) + "deg"
@@ -64,8 +67,6 @@
         }
     }
 
-    // code to run on load, reactive stuff, etc.
-
     generatePostIts();
 </script>
 
@@ -90,7 +91,7 @@
 
 <!-- make this responsive on mobile !!-->
 
-<style>
+<style lang="postcss">
     .pink-note-title-container {
         height: 50%;
         position: relative;
@@ -130,6 +131,7 @@
         0% {transform: rotate(10deg)}
         100% {transform: rotate(360deg); top: 200%}
     }
+
     :global(.fall-class) {
         animation: fall 1s ease-in !important;
         pointer-events: none !important;
@@ -143,7 +145,7 @@
         overflow: hidden;
     }
     .pink-note-title-post-it {
-        height: 35%;
+        width: 10%;
         aspect-ratio: 1 / 1;
         padding: 2%;
         position: absolute;

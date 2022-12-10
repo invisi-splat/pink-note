@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<style>
+<style lang="postcss">
     .double-bar-line-container {
         position: absolute;
         display: flex;

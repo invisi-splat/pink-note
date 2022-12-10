@@ -51,7 +51,7 @@
     </div>
 </div>
 
-<style>
+<style lang="postcss">
     .container {
         position: relative;
         z-index: 10;
@@ -80,8 +80,8 @@
     }
 
     .stave-line {
-        height: 0.05vh;
-        margin: 0.3vh 0;
+        height: 0.07vh;
+        margin: 0.29vh 0;
         background-color: black;
     }
 

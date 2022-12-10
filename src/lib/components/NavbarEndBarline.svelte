@@ -5,7 +5,7 @@
     </div>
 </div>
 
-<style>
+<style lang="postcss">
     .end-bar-line-container {
         position: absolute;
         display: flex;

@@ -1,0 +1,1 @@
+export const imgNum = 15; // would be nice to make this dynamic --- i'd probably have to use the CMS

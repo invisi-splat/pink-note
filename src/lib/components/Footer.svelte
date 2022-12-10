@@ -3,13 +3,14 @@
         <div class="credits-title">Credits and acknowledgements</div>
         <div><a href="https://www.freepik.com/free-photo/paperboard-simple-fiber-dusty-texture_1040136.htm#query=cork%20texture&position=2&from_view=keyword">Corkboard texture by tirachard</a> on Freepik</div>
         <div>Title mugshots provided by Jessica Macfarlane</div>
+        <div>Nail bent PNG designed by ingimage from <a href="https://pngtree.com">Pngtree.com</a></div>
     </div>
     <div class="footer-text">
         <div>Website made with ❤️, a little bit of 💦, not much 💤, and a whole lot of 🎵 by Bowen Zhu, GG.</div>
     </div>
 </div>
 
-<style>
+<style lang="postcss">
     .container {
         height: 20vh;
         padding-top: 2vh;
@@ -45,6 +46,6 @@
     }
 
     .credits-title {
-        font-weight: 400;
+        font-weight: 600;
     }
 </style>
