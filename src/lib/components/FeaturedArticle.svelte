@@ -120,7 +120,7 @@
         font-family: Helvetica, sans-serif;
         padding-right: 5%;
         text-transform: uppercase;
-        font-weight: bold;
+        font-weight: 900;
     }
 
     .header-divider {

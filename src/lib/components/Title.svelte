@@ -82,7 +82,7 @@
                 style:top style:left style:transform="rotate({rotation})" style:background-image="url({paper_texture})"
                 on:click={postItFallHandler}
                 on:keydown={postItFallHandler} >
-                <img src={image_url} alt={name} />
+                <img src={image_url} alt={name} draggable="false" />
             </div>
         {/each}
     </div>
