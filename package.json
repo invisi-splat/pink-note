@@ -38,6 +38,7 @@
 		"autoprefixer": "^10.4.13",
 		"bowser": "^2.11.0",
 		"normalize.css": "^8.0.1",
-		"postcss": "^8.4.19"
+		"postcss": "^8.4.19",
+		"qs": "^6.11.0"
 	}
 }

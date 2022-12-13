@@ -1,5 +1,5 @@
 <svelte:head>
-  <title>Pink Note</title>
+    <title>Pink Note</title>
 </svelte:head>
 
 <script lang="ts">
@@ -21,7 +21,6 @@
     onMount(() => {
         browserName = Bowser.getParser(window.navigator.userAgent).getBrowser().name;
     })
-    $: console.log(browserName);
 </script>
 
 <Title n={10} imgURLs={imgURLs} />

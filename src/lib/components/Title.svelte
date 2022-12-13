@@ -9,7 +9,7 @@
 
     // generate post-its
     export let n = 10;
-    export let imgURLs: any[];
+    export let imgURLs: string[];
 
 
     let remainingPictures = n;
@@ -32,8 +32,8 @@
             }
             rotation = Math.floor(Math.random() * 30) - 15;
             people.push({
-                name: "placeholder",
-                image_url: imgURLs[i].default,
+                name: "title image",
+                image_url: imgURLs[i],
                 top: String(top) + "%",
                 left: String(left) + "%",
                 rotation: String(rotation) + "deg"
@@ -66,7 +66,6 @@
             endTime = Date.now();
         }
     }
-
     generatePostIts();
 </script>
 
