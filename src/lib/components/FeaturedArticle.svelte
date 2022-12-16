@@ -34,7 +34,6 @@
 
     generateSellotapes();
 
-
     // export props
 
     export let date: string;

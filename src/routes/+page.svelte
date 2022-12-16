@@ -16,7 +16,24 @@
 
     import white_concrete_texture from "$lib/assets/white-concrete-texture.jpg";
 
-    const imgURLs = data.imgURLs;
+    function parseDate(datetime: string) {
+        const dt: Date = new Date(datetime);
+        const unformattedHour: number = dt.getHours();
+        const formattedHour: string = unformattedHour < 10 ? "0" + String(unformattedHour) : String(unformattedHour);
+        const unformattedMinute: number = dt.getMinutes();
+        const formattedMinute: string = unformattedMinute < 10 ? "0" + String(unformattedMinute) : String(unformattedMinute);
+        console.log(datetime + " " + dt.getDay());
+        return `${dt.getDate()}/${dt.getMonth() + 1}/${dt.getFullYear()} ${formattedHour}:${formattedMinute}`;
+    }
+
+    function parseRecency(datetime: string) {
+        const dt: Date = new Date(datetime);
+        const now: number = Date.now();
+        const diff_milliseconds: number = now - dt.valueOf();
+        return diff_milliseconds < 604800000; // 7 days
+    }
+
+    const { imgURLs, featuredArticles } = data;
     let browserName: string | undefined;
     onMount(() => {
         browserName = Bowser.getParser(window.navigator.userAgent).getBrowser().name;
@@ -31,22 +48,16 @@
         <BrowserWarning { browserName } />
     {/if}
     <div class="featured-article-container">
-        <!-- maximum 3 featured articles (any more and formatting breaks)-->
-        <FeaturedArticle date="5/6/22 14:58" type="article" recent={true}
-            title="Would J.S. Bach Appreciate It If We Dubstep-Remixed His Cello Suite No. 1?"
-            subtitle="We discuss it here (and release a sneak preview of what it would sound like)."
-            printerLocation="manoukian kitchen m401"
+        {#each featuredArticles as { id, attributes }}
+            <FeaturedArticle
+                date={parseDate(attributes.Blog.Datetime)}
+                type="article"
+                recent={parseRecency(attributes.Blog.Datetime)}
+                title={attributes.Blog.Title}
+                subtitle={attributes.Blog.Subtitle}
+                printerLocation={"insert printer here"}
             />
-        <FeaturedArticle date="2/6/22 14:58" type="article" recent={false}
-            title="A defense of John Cage's 4'33"
-            subtitle="I promise you, I'm not an idiot for liking it! It's sophisticated, I swear!"
-            printerLocation="library photocopier c5860"
-            />
-        <FeaturedArticle date="1/6/22 14:58" type="event" recent={false}
-            title="Mr. Price vs. Mr. Garrard Rap Battle"
-            subtitle="Going live soon - don't miss it! Click here to find the link."
-            printerLocation="bowen's prusa mini+"
-            />
+        {/each}
     </div>
     <div class="footer-spacer"></div>
 </div>
