@@ -2,7 +2,7 @@
     <title>Pink Note</title>
 </svelte:head>
 
-<script lang="ts">
+<script lang="ts"> // TODO: Dark mode
     /** @type {import('./$types').PageData} */
     export let data;
     import Bowser from "bowser";
@@ -13,27 +13,27 @@
     import FeaturedArticle from "$lib/components/FeaturedArticle.svelte";
     import Footer from "$lib/components/Footer.svelte";
     import BrowserWarning from "$lib/components/BrowserWarning.svelte";
+    import Announcement from "$lib/components/Announcement.svelte";
 
     import white_concrete_texture from "$lib/assets/white-concrete-texture.jpg";
 
-    function parseDate(datetime: string) {
+    function parseArticleDate(datetime: string) {
         const dt: Date = new Date(datetime);
         const unformattedHour: number = dt.getHours();
         const formattedHour: string = unformattedHour < 10 ? "0" + String(unformattedHour) : String(unformattedHour);
         const unformattedMinute: number = dt.getMinutes();
         const formattedMinute: string = unformattedMinute < 10 ? "0" + String(unformattedMinute) : String(unformattedMinute);
-        console.log(datetime + " " + dt.getDay());
         return `${dt.getDate()}/${dt.getMonth() + 1}/${dt.getFullYear()} ${formattedHour}:${formattedMinute}`;
     }
 
-    function parseRecency(datetime: string) {
+    function parseArticleRecency(datetime: string, recencyThresholdSeconds: number) {
         const dt: Date = new Date(datetime);
         const now: number = Date.now();
         const diff_milliseconds: number = now - dt.valueOf();
-        return diff_milliseconds < 604800000; // 7 days
+        return diff_milliseconds < recencyThresholdSeconds; // 7 days
     }
 
-    const { imgURLs, featuredArticles } = data;
+    const { imgURLs, featuredArticles, announcements } = data;
     let browserName: string | undefined;
     onMount(() => {
         browserName = Bowser.getParser(window.navigator.userAgent).getBrowser().name;
@@ -47,12 +47,15 @@
     {#if browserName !== "Chrome" && browserName}
         <BrowserWarning { browserName } />
     {/if}
+    <div class="announcement-container">
+        <Announcement data={announcements[0].attributes} />
+    </div>
     <div class="featured-article-container">
         {#each featuredArticles as { id, attributes }}
             <FeaturedArticle
-                date={parseDate(attributes.Blog.Datetime)}
+                date={parseArticleDate(attributes.Blog.Datetime)}
                 type="article"
-                recent={parseRecency(attributes.Blog.Datetime)}
+                recent={parseArticleRecency(attributes.Blog.Datetime, 604800000)}
                 title={attributes.Blog.Title}
                 subtitle={attributes.Blog.Subtitle}
                 printerLocation={"insert printer here"}
@@ -74,6 +77,12 @@
         background-size: 60%;
         position: relative;
         z-index: 2;
+    }
+    .announcement-container {
+        padding-top: 5%;
+        position: relative;
+        display: flex;
+        justify-content: center;
     }
     .featured-article-container {
         padding-top: 5%;

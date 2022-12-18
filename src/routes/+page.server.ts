@@ -17,14 +17,24 @@ export async function load() {
     const featuredArticles = await fetch(`http://localhost:${BACKEND_PORT}/api/articles?${qs.stringify({
         pagination: {
             page: 1,
-            pageSize: 10
+            pageSize: 3
         },
         populate: "*"
     })}`);
     const featuredArticles_json = await featuredArticles.json();
 
+    const announcements = await fetch(`http://localhost:${BACKEND_PORT}/api/announcements?${qs.stringify({
+        pagination: {
+            page: 1,
+            pageSize: 1
+        },
+        populate: "*"
+    })}`);
+    const announcements_json = await announcements.json();
+
     return {
-        imgURLs: imgs_json.map(({ url }: {url: string}) => BACKEND + url), // only doing this because i'm too lazy to fix
-        featuredArticles: featuredArticles_json.data
+        imgURLs: imgs_json.map(({ url }: {url: string}) => BACKEND + url), // XXX only doing this because i'm too lazy to fix
+        featuredArticles: featuredArticles_json.data,
+        announcements: announcements_json.data
     };
 };

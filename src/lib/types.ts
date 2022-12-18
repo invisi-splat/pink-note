@@ -2,4 +2,15 @@
 
 type ArticleType = "article" | "announcement" | "poll" | "event"
 
-export type { ArticleType }
+interface BlogType {
+    id: number;
+    Title: string;
+    Datetime: string;
+    AuthorName: string;
+    AuthorYearGroup: string;
+    AuthorHouse: string;
+    Body: string;
+    Subtitle: string | null;
+}
+
+export type { ArticleType, BlogType }

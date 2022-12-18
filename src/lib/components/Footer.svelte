@@ -7,6 +7,7 @@
     </div>
     <div class="footer-text">
         <div>Website made with ❤️, a little bit of 💦, not much 💤, and a whole lot of 🎵 by Bowen Zhu, GG.</div>
+        <a href="https://github.com/invisi-splat/pink-note">GitHub repo</a>
     </div>
 </div>
 

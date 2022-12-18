@@ -52,8 +52,12 @@
             <div class="type" class:recent>{recent ? "new " : "" }{type}</div>
         </div>
         <div class="header-divider"></div>
+        {#if subtitle}
         <div class="title" class:recent>{title}</div>
         <div class="subtitle">{subtitle}</div>
+        {:else}
+        <div class="title" class:recent style:height="55%">{title}</div> 
+        {/if}
         <div class="footer-divider"></div>
         <div class="footer">
             <div>Printed from <i>{printerLocation}</i></div>
