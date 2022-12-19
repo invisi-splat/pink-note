@@ -37,10 +37,10 @@
 </script>
 
 <div class="container" style:width="{width}%" on:mouseenter={handleMouseenter} on:mouseleave={handleMouseleave}>
-    <div class="note-container">
+    <a href={url} class="note-container">
         <div class="note" style:bottom="{bottom}vh"><img src={ledger ? (active ? crotchetStemUpLedger : minimStemUpLedger) : (active ? crotchetStemUp : minimStemUp)} alt="minim" /></div>
-    </div>
-    <div class="name" class:active>{name}</div>
+    </a>
+    <a href={url} class="name" class:active>{name}</a>
 </div>
 
 <style lang="postcss">

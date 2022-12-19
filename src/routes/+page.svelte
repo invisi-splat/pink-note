@@ -41,8 +41,8 @@
     })
 </script>
 
-<Title n={10} imgURLs={imgURLs} />
-<Navbar />
+<Title text="PINK  NOTE" n={10} imgURLs={imgURLs} />
+<Navbar activeItem={0}/>
 
 <div class="stuff-container" style:background-image="url('{white_concrete_texture}')">  <!-- please find attached: the stuff -->
     <!-- TODO Make realistic objects more interactive (peel off sellotape, write on whiteboard, pull out pins, etc.) -->

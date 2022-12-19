@@ -10,6 +10,7 @@
     // generate post-its
     export let n = 10;
     export let imgURLs: string[];
+    export let text: string;
 
 
     let remainingPictures = n;
@@ -73,7 +74,7 @@
 
 <div class="pink-note-title-container" style:top="{0.6 * y}px"> <!-- parallax -->
     <div class="pink-note-title-pinboard" style="--bg-img: url('{pinboard}')">
-        <div class="pink-note-title" class:fancy-title="{remainingPictures === 0}">PINK  NOTE</div>
+        <div class="pink-note-title" class:fancy-title="{remainingPictures === 0}">{text}</div>
     </div>
     <div class="pink-note-title-images">
         {#each people as { name, image_url, top, left, rotation}}
@@ -118,6 +119,7 @@
         white-space: pre;
         text-shadow: 0px 0px rgba(0, 0, 0, 0.1);
         transition: color 1s, text-shadow 1s;
+        text-transform: uppercase;
     }
 
     .fancy-title {

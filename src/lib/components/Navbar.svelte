@@ -12,13 +12,13 @@
 
     // bottom: displace x vh upwards
     let menuItems: {name: string, url: string, active: boolean, ledger: boolean, bottom: number}[] = [
-        {name: "Home", url: "placeholder", active: true, ledger: false, bottom: -0.6625},
-        {name: "Announcements", url: "placeholder", active: false, ledger: false, bottom: -0.33125},
-        {name: "Articles", url: "placeholder", active: false, ledger: false, bottom: 0},
-        {name: "Events", url: "placeholder", active: false, ledger: false, bottom: 0.33125},
-        {name: "About", url: "placeholder", active: false, ledger: false, bottom: -0.33125},
-        {name: "FAQ", url: "placeholder", active: false, ledger: true, bottom: -0.99375},
-        {name: "Other sites", url: "placeholder", active: false, ledger: false, bottom: -0.6625}
+        {name: "Home", url: "/", active: false, ledger: false, bottom: -0.6625},
+        {name: "Announcements", url: "/announcements", active: false, ledger: false, bottom: -0.33125},
+        {name: "Articles", url: "/articles", active: false, ledger: false, bottom: 0},
+        {name: "Events", url: "/events", active: false, ledger: false, bottom: 0.33125},
+        {name: "About", url: "/about", active: false, ledger: false, bottom: -0.33125},
+        {name: "FAQ", url: "/faq", active: false, ledger: true, bottom: -0.99375},
+        {name: "Other sites", url: "/other_sites", active: false, ledger: false, bottom: -0.6625}
     ];
     let barLines: number[] = []; // list of left offsets
     const n = menuItems.length; // dev variable, please change (like title component)
@@ -26,6 +26,9 @@
     for (let i = 1; i < n; i++) { // starting from 1 as we don't want a barline at 0%
         barLines.push(width * i);
     }
+
+    export let activeItem: number;
+    menuItems[activeItem].active = true;
 </script>
 
 <div class="container">

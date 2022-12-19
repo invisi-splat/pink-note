@@ -32,7 +32,7 @@
             <div class="right-column">Posted {parseDate(attributes.Blog.Datetime)} by {attributes.Blog.AuthorName}, {attributes.Blog.AuthorHouse}</div>
         </div>
         {/each}
-        <div class="see-more">See more...</div>
+        <a href="/articles" class="see-more">See more...</a>
     </div>
 </div>
 
