@@ -14,6 +14,7 @@
     import Footer from "$lib/components/Footer.svelte";
     import BrowserWarning from "$lib/components/BrowserWarning.svelte";
     import Announcement from "$lib/components/Announcement.svelte";
+    import RecentArticles from "$lib/components/RecentArticles.svelte";
 
     import white_concrete_texture from "$lib/assets/white-concrete-texture.jpg";
 
@@ -31,9 +32,9 @@
         const now: number = Date.now();
         const diff_milliseconds: number = now - dt.valueOf();
         return diff_milliseconds < recencyThresholdSeconds; // 7 days
-    }
+    } // FIXME Refactor code so that the processing occurs within the components
 
-    const { imgURLs, featuredArticles, announcements } = data;
+    const { imgURLs, featuredArticles, articles, announcements } = data;
     let browserName: string | undefined;
     onMount(() => {
         browserName = Bowser.getParser(window.navigator.userAgent).getBrowser().name;
@@ -44,14 +45,15 @@
 <Navbar />
 
 <div class="stuff-container" style:background-image="url('{white_concrete_texture}')">  <!-- please find attached: the stuff -->
+    <!-- TODO Make realistic objects more interactive (peel off sellotape, write on whiteboard, pull out pins, etc.) -->
     {#if browserName !== "Chrome" && browserName}
         <BrowserWarning { browserName } />
     {/if}
-    <div class="announcement-container">
-        <Announcement data={announcements[0].attributes} />
+    <div class="announcement-container"> <!-- TODO Hide when no recent announcements -->
+        <Announcement data={announcements[0].attributes} /> <!-- take only first announcement -->
     </div>
     <div class="featured-article-container">
-        {#each featuredArticles as { id, attributes }}
+        {#each featuredArticles as { id, attributes }} <!-- TODO remove id if not necessary -->
             <FeaturedArticle
                 date={parseArticleDate(attributes.Blog.Datetime)}
                 type="article"
@@ -62,6 +64,7 @@
             />
         {/each}
     </div>
+    <RecentArticles data={articles}/>
     <div class="footer-spacer"></div>
 </div>
 
@@ -69,6 +72,7 @@
 <style lang="postcss">
     :global(body) {
         overflow-x: hidden;
+        height: auto;
     }
 
     .stuff-container {

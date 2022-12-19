@@ -13,4 +13,8 @@ interface BlogType {
     Subtitle: string | null;
 }
 
-export type { ArticleType, BlogType }
+interface TagsType {
+    Tags: string;
+}
+
+export type { ArticleType, BlogType, TagsType }

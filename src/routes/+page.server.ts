@@ -14,14 +14,17 @@ export async function load() {
     const imgs_json = await imgs.json();
 
     // getting featured articles
-    const featuredArticles = await fetch(`http://localhost:${BACKEND_PORT}/api/articles?${qs.stringify({
+    const articles = await fetch(`http://localhost:${BACKEND_PORT}/api/articles?${qs.stringify({
         pagination: {
             page: 1,
-            pageSize: 3
+            pageSize: 10 /* ten recent articles (page 1) */
         },
+        sort: "Blog.Datetime:desc",
         populate: "*"
     })}`);
-    const featuredArticles_json = await featuredArticles.json();
+    const articles_json = await articles.json();
+    const featuredArticles = articles_json.data.slice(0, 3); /* only 3 featured articles */
+    const recentArticles = articles_json.data.slice(3, 10); /* remaining 7 */
 
     const announcements = await fetch(`http://localhost:${BACKEND_PORT}/api/announcements?${qs.stringify({
         pagination: {
@@ -34,7 +37,8 @@ export async function load() {
 
     return {
         imgURLs: imgs_json.map(({ url }: {url: string}) => BACKEND + url), // XXX only doing this because i'm too lazy to fix
-        featuredArticles: featuredArticles_json.data,
+        featuredArticles: featuredArticles,
+        articles: recentArticles,
         announcements: announcements_json.data
     };
 };

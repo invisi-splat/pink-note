@@ -92,7 +92,7 @@
 
 <style lang="postcss">
     .pink-note-title-container {
-        height: 50%;
+        height: 50vh; /* i <3 vh */
         position: relative;
         z-index: 1;
     }

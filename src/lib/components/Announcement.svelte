@@ -2,7 +2,7 @@
     import nailhead_texture from "$lib/assets/nailhead.png";
     import type { BlogType } from "$lib/types";
 
-    interface AnnouncementShape {
+    interface AnnouncementType {
         createdAt: string;
         updatedAt: string;
         publishedAt: string;
@@ -12,7 +12,7 @@
         Blog: BlogType
     }
 
-    export let data: AnnouncementShape;
+    export let data: AnnouncementType;
 </script>
 
 <div class="container">
