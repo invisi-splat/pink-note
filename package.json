@@ -36,8 +36,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@types/marked": "^4.0.8",
 		"autoprefixer": "^10.4.13",
 		"bowser": "^2.11.0",
+		"isomorphic-dompurify": "^0.24.0",
+		"marked": "^4.2.4",
 		"normalize.css": "^8.0.1",
 		"postcss": "^8.4.19",
 		"qs": "^6.11.0"
