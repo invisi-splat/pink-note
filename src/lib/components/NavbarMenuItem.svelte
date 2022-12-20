@@ -36,6 +36,8 @@
     }
 </script>
 
+<!-- TODO add smooth page transitions -->
+
 <div class="container" style:width="{width}%" on:mouseenter={handleMouseenter} on:mouseleave={handleMouseleave}>
     <a href={url} class="note-container">
         <div class="note" style:bottom="{bottom}vh"><img src={ledger ? (active ? crotchetStemUpLedger : minimStemUpLedger) : (active ? crotchetStemUp : minimStemUp)} alt="minim" /></div>

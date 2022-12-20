@@ -37,6 +37,9 @@
 </div>
 
 <style lang="postcss">
+    a {
+        color: black;
+    }
     .container {
         width: 100vw;
         margin-top: 20vh;

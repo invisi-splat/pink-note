@@ -70,11 +70,6 @@
 
 <Footer />
 <style lang="postcss">
-    :global(body) {
-        overflow-x: hidden;
-        height: auto;
-    }
-
     .stuff-container {
         width: 100%;
         min-height: 100%;
