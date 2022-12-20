@@ -60,6 +60,15 @@
 <style lang="postcss">
     @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
+    a {
+        color: rgb(92, 0, 95);
+        font-weight: 600;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
     .stuff-container {
         width: 100%;
         min-height: 100%;
@@ -82,16 +91,23 @@
 
     .article-container {
         width: 100vw;
-        min-height: 60vh;
+        min-height: 30vh;
         padding: 7vh 0 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
     }
 
     .error {
         width: 80vw;
-        height: 10vh;
+        height: 20vh;
         background-color: rgb(255, 253, 246);
+        text-align: center;
+        font-size: 200%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 3px 3px 5px black;
     }
 </style>
