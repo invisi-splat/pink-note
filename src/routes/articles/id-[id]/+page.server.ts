@@ -1,4 +1,4 @@
-import { BACKEND_PORT, BACKEND } from "$env/static/private";
+import { BACKEND_PORT } from "$env/static/private";
 import qs from "qs";
 
 interface paramsType {
