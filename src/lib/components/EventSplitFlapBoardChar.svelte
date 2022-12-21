@@ -6,7 +6,7 @@
     // TODO check for lag; optimise for slower computers (this already takes up 15% of a 3080)
     // TODO make flip speed customisable
     export let showChar = "a";
-    export let speed = 100;
+    export let speed = 60;
 
     let charDiv: HTMLDivElement;
 
@@ -14,26 +14,28 @@
     let charPos = 0;
     let divs: HTMLCollectionOf<HTMLDivElement>;
 
-    let newTopFlip = false;
-    let bottomFlip = false;
-    let newTopAnimate = false;
-    let bottomAnimate = false;
+    let newBottomFlip = false;
+    let topFlip = false;
+    let newBottomAnimate = false;
+    let topAnimate = false;
 
     function flip() {
-        bottomAnimate = true;
-        newTopAnimate = true;
-        setTimeout(() => {bottomFlip = true}, 1);
-        setTimeout(() => {newTopFlip = true}, speed + 1);
+        charDiv.style.pointerEvents = "none";
+        topAnimate = true;
+        newBottomAnimate = true;
+        setTimeout(() => {topFlip = true}, 1);
+        setTimeout(() => {newBottomFlip = true}, speed + 1);
         setTimeout(() => {
-            bottomAnimate = false;
-            newTopAnimate = false;
+            topAnimate = false;
+            newBottomAnimate = false;
             charPos = charPos + 1;
             divs[0].innerHTML = chars[charPos];
             divs[1].innerHTML = chars[charPos];
             divs[2].innerHTML = chars[charPos + 1];
             divs[3].innerHTML = chars[charPos + 1];
-            bottomFlip = false;
-            newTopFlip = false;
+            topFlip = false;
+            newBottomFlip = false;
+            charDiv.style.pointerEvents = "all";
         }, 2 * speed + 1);
     }
 
@@ -42,7 +44,7 @@
         let diff = index - charPos;
         diff = diff < 0 ? diff + chars.length : diff;
         for (let i = 0; i < diff; i++) {
-            setTimeout(() => { flip() }, i * (2.1 * speed + 1)); // 2.1 to create leeway between each flip
+            setTimeout(() => { flip() }, i * (2.5 * speed + 1)); // 2.5 to create leeway between each flip
         }
     }
 
@@ -74,10 +76,10 @@
 </script>
 
 <div class="char-container" on:click={flip} bind:this={charDiv}>
-    <div class="char top">{chars[charPos]}</div>
-    <div class="char bottom" style="--speed: {speed}ms" class:flip={bottomFlip} class:animate={bottomAnimate}>{chars[charPos]}</div>
-    <div class="char new-top" style="--speed: {speed}ms" class:flip={newTopFlip} class:animate={newTopAnimate}>{chars[(charPos + 1) % chars.length]}</div>
-    <div class="char new-bottom">{chars[(charPos + 1) % chars.length]}</div>
+    <div class="char top" style="--speed: {speed}ms" class:flip={topFlip} class:animate={topAnimate}>{chars[charPos]}</div>
+    <div class="char bottom">{chars[charPos]}</div>
+    <div class="char new-top">{chars[(charPos + 1) % chars.length]}</div>
+    <div class="char new-bottom" style="--speed: {speed}ms" class:flip={newBottomFlip} class:animate={newBottomAnimate}>{chars[(charPos + 1) % chars.length]}</div>
 </div>
 
 <style lang="postcss">
@@ -111,48 +113,48 @@
     .top {
         position: relative;
         clip-path: polygon(0 0, 0 50%, 1.7vw 50%, 1.7vw 0);
+        transform: scale(1);
         z-index: 2;
+    }
+
+    .top.animate {
+        transition: transform var(--speed) ease-in;
+    }
+
+    .top.flip {
+        transform: scale(1, 0);
     }
 
     .bottom {
         position: absolute;
         top: 0%;
         clip-path: polygon(0 50%, 0 100%, 1.7vw 100%, 1.7vw 50%);
-        transform: scale(1);
         z-index: 2;
-    }
-
-    .bottom.animate {
-        transition: transform var(--speed) ease-in;
-    }
-
-    .bottom.flip {
-        transform: scale(1, 0);
     }
 
     .new-top {
         position: absolute;
         top: 0%;
         clip-path: polygon(0 0, 0 50%, 1.7vw 50%, 1.7vw 0);
-        transform: scale(1, 0);
-        z-index: 3;
+        z-index: 1;
     }
 
-    .new-top.animate {
-        transition: transform var(--speed) ease-out;
-    }
-
-    .new-top.flip {
-        transform: scale(1, 1);
-    }
-
+    
     .new-bottom {
         position: absolute;
         top: 0%;
         clip-path: polygon(0 50%, 0 100%, 1.7vw 100%, 1.7vw 50%);
-        z-index: 1;
+        transform: scale(1, 0);
+        z-index: 3;
+    }
+    .new-bottom.animate {
+        transition: transform var(--speed) ease-out;
     }
 
+    .new-bottom.flip {
+        transform: scale(1, 1);
+    }
+    
     .char-container::after {
         content: "";
         position: absolute;
