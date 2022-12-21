@@ -1,5 +1,6 @@
 <script lang="ts">
     import nailhead_texture from "$lib/assets/nailhead.png";
+    import announcement_wordart from "$lib/assets/announcement-rainbow-wordart.png";
     import type { BlogType } from "$lib/types";
 
     interface AnnouncementType {
@@ -22,7 +23,11 @@
     </div>
     <div class="announcement">
         <div class="announcement-content importance-{data.Importance}">
-            <div class="big-shouty-attention-grabber">ANNOUNCEMENT!!!</div> <!-- TODO: consider replacing this with cooltext for that extra spicy graphic design factor -->
+            {#if data.Importance === "IV" || data.Importance === "III" }
+                <div class="big-shouty-attention-grabber">
+                    <img alt="ANNOUNCEMENT" src={announcement_wordart} />
+                </div>
+            {/if}
             <div class="title">{data.Blog.Title}</div>
         </div>
     </div>
@@ -69,8 +74,9 @@
     }
 
     .announcement-content {
-        display: block;
+        display: flex;
         padding-bottom: 5vh; /* fix wonky flex centre due to nails */
+        justify-content: space-between;
     }
 
     .announcement-content > div {
@@ -80,15 +86,24 @@
     }
 
     .big-shouty-attention-grabber {
-        width: 35%;
-        display: inline-block;
-        float: left; /* side-by-side divs */
+        flex-grow: 1;
+        padding: 0 5vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .big-shouty-attention-grabber > img {
+        width: 30vw;
     }
 
     .title {
-        width: 65%;
-        display: inline-block;
+        flex-grow: 3;
         font-weight: 700;
+        padding: 0 2vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .importance-I {

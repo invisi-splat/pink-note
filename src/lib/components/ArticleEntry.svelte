@@ -9,6 +9,8 @@
     }
 
     export let data: {id: number, attributes: ArticleType};
+    export let r: number;
+    export let s: number;
 
     const randomSelfRotationDegrees = Math.floor(Math.random() * 2) - 1
 
@@ -20,7 +22,7 @@
 
 <div class="centring-container">
     <div class="drop-shadow-container">
-        <a href={`/articles/id-${data.id}`} class="container" style:transform="rotate({randomSelfRotationDegrees}deg)">
+        <a href="/articles/id-{data.id}?r={r}&s={s}" class="container" style:transform="rotate({randomSelfRotationDegrees}deg)">
             <div class="article">
                 <div class="title">{data.attributes.Blog.Title}</div>
                 <div class="author">{data.attributes.Blog.AuthorName}, {data.attributes.Blog.AuthorHouse} on {parseDate(data.attributes.Blog.Datetime)}</div>

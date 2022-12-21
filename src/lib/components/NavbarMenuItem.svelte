@@ -39,10 +39,10 @@
 <!-- TODO add smooth page transitions -->
 
 <div class="container" style:width="{width}%" on:mouseenter={handleMouseenter} on:mouseleave={handleMouseleave}>
-    <a href={url} class="note-container">
+    <a data-sveltekit-noscroll href={url} class="note-container">
         <div class="note" style:bottom="{bottom}vh"><img src={ledger ? (active ? crotchetStemUpLedger : minimStemUpLedger) : (active ? crotchetStemUp : minimStemUp)} alt="minim" /></div>
     </a>
-    <a href={url} class="name" class:active>{name}</a>
+    <a data-sveltekit-noscroll href={url} class="name" class:active>{name}</a>
 </div>
 
 <style lang="postcss">

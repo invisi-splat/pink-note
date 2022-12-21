@@ -6,13 +6,17 @@ interface paramsType {
 }
 
 /** @type {import('./$types').PageLoad} */
-export async function load({ params }: { params: paramsType }) { // HACK Define proper type
+export async function load({ params, url }: { params: paramsType, url: URL }) {
     const article = await fetch(`http://localhost:${BACKEND_PORT}/api/articles/${params.id}?${qs.stringify({
         populate: "*"
     })}`);
     const article_json = await article.json();
+    const returnPage = Number(url.searchParams.get("r")) || 1;
+    const returnPageSize = Number(url.searchParams.get("s")) || 10;
 
     return {
-        article: article_json.data
+        article: article_json.data,
+        returnPage: returnPage,
+        returnPageSize: returnPageSize
     };
 };

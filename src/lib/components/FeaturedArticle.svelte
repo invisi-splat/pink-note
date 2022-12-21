@@ -36,6 +36,8 @@
 
     // export props
 
+    export let id: string; // yes it's a string for some reason
+
     export let date: string;
     export let type: ArticleType;
     export let recent: boolean;
@@ -46,7 +48,7 @@
 </script>
 
 <div class="article-preview-container">
-    <div class="container" style="transform: rotate({randomRotation})">
+    <a href="/articles/id-{id}" class="container" style="transform: rotate({randomRotation})">
         <div class="header">
             <div class="date">{date}</div>
             <div class="type" class:recent>{recent ? "new " : "" }{type}</div>
@@ -62,7 +64,7 @@
         <div class="footer">
             <div>Printed from <i>{printerLocation}</i></div>
         </div>
-    </div>
+    </a>
     {#each sellotapes as { top, left, rotation }}
     <div class="sellotape" style:background-image="url('{sellotape_texture}')"
         style:top="{top}%"
@@ -73,6 +75,9 @@
 </div>
 
 <style lang="postcss">
+    a {
+        color: black;
+    }
     .article-preview-container {
         width: 30%;
         height: 75vh;

@@ -2,6 +2,8 @@
     <title>Articles</title>
 </svelte:head>
 
+<!-- refactor this (see README) -->
+
 <script lang="ts">
     /** @type {import('./$types').PageData} */
     export let data;
@@ -22,8 +24,6 @@
     onMount(() => {
         browserName = Bowser.getParser(window.navigator.userAgent).getBrowser().name;
     })
-
-    console.log(articles_json.data)
 </script>
 
 <Title text="Articles" n={10} imgURLs={imgURLs} />
@@ -38,7 +38,7 @@
         {#if articles_json.data.length} <!-- wtf js -->
         <ArticlePageBrowser articles_json={articles_json} pageSize={pageSize} />
             {#each articles_json.data as data}
-                <ArticleEntry data={data} />
+                <ArticleEntry data={data} r={articles_json.meta.pagination.page} s={pageSize}/>
             {/each}
             {#if articles_json.data.length > 3} <!-- not using pageSize in case the user is on the final page -->
                 <ArticlePageBrowser articles_json={articles_json} pageSize={pageSize} />

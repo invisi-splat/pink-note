@@ -29,8 +29,9 @@ export async function load() {
     const announcements = await fetch(`http://localhost:${BACKEND_PORT}/api/announcements?${qs.stringify({
         pagination: {
             page: 1,
-            pageSize: 1
+            pageSize: 10 /* NOTE make sure that announcements don't overlap (if they do, change this threshold) */
         },
+        sort: "Blog.Datetime:desc",
         populate: "*"
     })}`);
     const announcements_json = await announcements.json();

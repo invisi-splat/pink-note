@@ -11,6 +11,7 @@
     export let n = 10;
     export let imgURLs: string[];
     export let text: string;
+    export let shrink = false;
 
 
     let remainingPictures = n;
@@ -74,7 +75,7 @@
 
 <div class="pink-note-title-container" style:top="{0.6 * y}px"> <!-- parallax -->
     <div class="pink-note-title-pinboard" style="--bg-img: url('{pinboard}')">
-        <div class="pink-note-title" class:fancy-title="{remainingPictures === 0}">{text}</div>
+        <div class="pink-note-title" class:fancy-title="{remainingPictures === 0}" class:shrink >{text}</div>
     </div>
     <div class="pink-note-title-images">
         {#each people as { name, image_url, top, left, rotation}}
@@ -183,5 +184,9 @@
     .pink-note-title-visible {
         opacity: 0.3;
         pointer-events: all;
+    }
+
+    .shrink {
+        font-size: 9vw;
     }
 </style>
