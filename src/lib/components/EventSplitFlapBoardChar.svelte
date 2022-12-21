@@ -70,6 +70,7 @@
 
     $: {
         if ($flipReset) {
+            console.log("reset!")
             reset();
         }
     };

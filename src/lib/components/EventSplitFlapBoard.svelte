@@ -13,6 +13,9 @@
 
     function emitReset() {
         flipReset.set(true);
+        setTimeout(() => {
+            flipReset.set(false)
+        }, 100)
     }
 </script>
 
@@ -41,6 +44,17 @@
         border: 5px ridge pink;
         box-shadow: 3px 3px 3px black;
         cursor: pointer;
+        user-select: none;
+        transition: box-shadow 0.2s, background-color 0.1s;
+    }
+
+    .reset:hover {
+        box-shadow: 5px 5px 5px black;
+    }
+
+    .reset:active {
+        box-shadow: 8px 8px 8px black;
+        background-color: rgb(255, 174, 187);
     }
 
     .board {
